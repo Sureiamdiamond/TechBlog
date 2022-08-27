@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // 2.1 saniye sabr bokon bad boro saafe dige
     Future.delayed(Duration(milliseconds: 2100)).then((value) {
-      Navigator.of(context).push(MaterialPageRoute(
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder:  (context)=> MainScreen()
       ));
     });
@@ -28,11 +28,12 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Color.fromARGB(255,255, 255,255),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(Assets.images.splash.path, height: 64,),
+              Image.asset(Assets.images.logo.path, height: 64,),
               SizedBox(height: 30,),
               SpinKitFadingCube(
                 color: SolidColors.primaryColor,

@@ -1,9 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:techblog/Colors.dart';
 import 'package:techblog/SplashScreen.dart';
 
 
+
+
 void main() {
+
+  SystemChrome.setSystemUIOverlayStyle(
+    /// phone ui statusbar
+      SystemUiOverlayStyle(
+        statusBarColor: SolidColors.statusBarColor,
+        statusBarIconBrightness: Brightness.dark,
+        systemNavigationBarColor: SolidColors.systemNavigationBarColor,
+        systemNavigationBarIconBrightness: Brightness.dark,
+      )
+  );
+
   runApp(const MyApp());
 }
 
@@ -58,3 +73,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
