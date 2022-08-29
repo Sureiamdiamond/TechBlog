@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     // 2.1 saniye sabr bokon bad boro saafe dige
-    Future.delayed(Duration(milliseconds: 2100)).then((value) {
+    Future.delayed(Duration(milliseconds: 10)).then((value) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder:  (context)=> MainScreen()
       ));

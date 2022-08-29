@@ -3,10 +3,12 @@ import 'package:flutter/painting.dart';
 
 class SolidColors {
 
-  static const Color primaryColor = Color.fromARGB(255,68,4,87);
-  static const Color colorTitle = Color.fromARGB(255,40,107,184);
-  static const Color textTtile = Color.fromARGB(255,0,0,0);
-  static const Color scaffoldBG = Color.fromARGB(255,255,255,255);
+  static const Color posterSubTitle = Color.fromARGB(200, 255, 255, 255);
+  static const Color posterTitle = Color.fromARGB(255, 255, 255, 255);
+  static const Color primaryColor = Color.fromARGB(255,68, 4,87);
+  static const Color colorTitle = Color.fromARGB(255,40, 107,184);
+  static const Color textTitle = Color.fromARGB(255,0, 0,0);
+  static const Color scaffoldBg = Color.fromARGB(255,255, 255,255);
   static const Color statusBarColor = Color.fromARGB(255,255, 255,255);
   static const Color systemNavigationBarColor = Color.fromARGB(255,255, 255,255);
   static const Color lightText = Color.fromARGB(255,255, 255,255);
@@ -20,7 +22,6 @@ class SolidColors {
   static const Color hintText = Color.fromARGB(255, 133, 133, 133);
   static const Color surface = Color.fromARGB(255, 242, 242, 242);
 
-
 }
 
 class GradiantColors {
@@ -31,5 +32,16 @@ class GradiantColors {
     const Color.fromARGB(0, 0, 0, 0) ,
     const Color.fromARGB(190, 72, 20, 88) ,
     const Color.fromARGB(225, 280, 20, 81)];
+
+  static const List<Color> tags = [Color.fromARGB(255, 0, 0, 0),Color.fromARGB(255, 63, 63, 63)];
+  static const List<Color> blogPost = [Color.fromARGB(255, 0, 0, 0),Color.fromARGB(0, 0, 0, 0)];
+  static const List<Color> homePosterCoverGradiant = [
+
+    Color.fromARGB(0, 0, 0, 0)
+    ,Color.fromARGB(195, 72, 20, 88)
+    ,Color.fromARGB(255, 280, 20, 81)
+  ];
+
+
 
 }

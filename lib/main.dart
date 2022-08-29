@@ -44,25 +44,35 @@ class MyApp extends StatelessWidget {
         fontFamily: 'dana',
         textTheme: const TextTheme(
           headline1: TextStyle(
-              color: Colors.black,
+              color: SolidColors.posterTitle,
               fontFamily: 'dana',
               fontSize: 16,
               fontWeight: FontWeight.w700),
+
+          subtitle1: TextStyle(
+              color: SolidColors.posterSubTitle,
+              fontFamily: 'dana',
+              fontSize: 13.8,
+              fontWeight: FontWeight.w300),
+
           bodyText1: TextStyle(
               color: Colors.black,
               fontFamily: 'dana',
               fontSize: 13,
               fontWeight: FontWeight.w300),
+
           headline2: TextStyle(
               color: Colors.white,
               fontFamily: 'dana',
               fontSize: 14,
               fontWeight: FontWeight.w300),
+
           headline3: TextStyle( // manfi
               color: Colors.red,
               fontFamily: 'dana',
               fontSize: 14,
               fontWeight: FontWeight.w700),
+
           headline4: TextStyle( // mosbat
               color: Colors.green,
               fontFamily: 'dana',
