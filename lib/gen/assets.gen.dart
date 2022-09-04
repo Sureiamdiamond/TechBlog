@@ -12,6 +12,13 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/mic_icon.png
+  AssetGenImage get micIcon => const AssetGenImage('assets/icons/mic_icon.png');
+
+  /// File path: assets/icons/pencil_icon.png
+  AssetGenImage get pencilIcon =>
+      const AssetGenImage('assets/icons/pencil_icon.png');
+
   /// File path: assets/icons/tag.png
   AssetGenImage get tag => const AssetGenImage('assets/icons/tag.png');
 }

@@ -67,13 +67,13 @@ class MyApp extends StatelessWidget {
               fontSize: 14,
               fontWeight: FontWeight.w300),
 
-          headline3: TextStyle( // manfi
-              color: Colors.red,
+          headline3: TextStyle(
+              color: SolidColors.seeMore,
               fontFamily: 'dana',
               fontSize: 14,
               fontWeight: FontWeight.w700),
 
-          headline4: TextStyle( // mosbat
+          headline4: TextStyle(
               color: Colors.green,
               fontFamily: 'dana',
               fontSize: 14,

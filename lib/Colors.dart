@@ -35,6 +35,7 @@ class GradiantColors {
 
   static const List<Color> tags = [Color.fromARGB(255, 0, 0, 0),Color.fromARGB(255, 63, 63, 63)];
   static const List<Color> blogPost = [Color.fromARGB(255, 0, 0, 0),Color.fromARGB(0, 0, 0, 0)];
+  static const List<Color> podPost = [Color.fromARGB(220, 0, 0, 0),Color.fromARGB(0, 0, 0, 0)];
   static const List<Color> homePosterCoverGradiant = [
 
     Color.fromARGB(0, 0, 0, 0)
