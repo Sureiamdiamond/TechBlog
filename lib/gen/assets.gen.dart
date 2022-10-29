@@ -12,6 +12,18 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/NavWriteicon.png
+  AssetGenImage get navWriteicon =>
+      const AssetGenImage('assets/icons/NavWriteicon.png');
+
+  /// File path: assets/icons/NavhomeIcon.png
+  AssetGenImage get navhomeIcon =>
+      const AssetGenImage('assets/icons/NavhomeIcon.png');
+
+  /// File path: assets/icons/Navusericon.png
+  AssetGenImage get navusericon =>
+      const AssetGenImage('assets/icons/Navusericon.png');
+
   /// File path: assets/icons/mic_icon.png
   AssetGenImage get micIcon => const AssetGenImage('assets/icons/mic_icon.png');
 
@@ -29,9 +41,19 @@ class $AssetsImagesGen {
   /// File path: assets/images/Logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/Logo.png');
 
+  /// File path: assets/images/Profile_avatar.png
+  AssetGenImage get profileAvatar =>
+      const AssetGenImage('assets/images/Profile_avatar.png');
+
+  /// File path: assets/images/arrow.png
+  AssetGenImage get arrow => const AssetGenImage('assets/images/arrow.png');
+
   /// File path: assets/images/programming.png
   AssetGenImage get programming =>
       const AssetGenImage('assets/images/programming.png');
+
+  /// File path: assets/images/robot.svg
+  String get robot => 'assets/images/robot.svg';
 }
 
 class Assets {

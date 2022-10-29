@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:techblog/Colors.dart';
-import 'package:techblog/MainScreen.dart';
-import 'gen/assets.gen.dart';
+import 'package:techblog/Components/Colors.dart';
+import 'package:techblog/View/MainScreen.dart';
+import '../gen/assets.gen.dart';
 
 class SplashScreen extends StatefulWidget{
   @override
@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     // 2.1 saniye sabr bokon bad boro saafe dige
-    Future.delayed(Duration(milliseconds: 10)).then((value) {
+    Future.delayed(Duration(milliseconds: 20)).then((value) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder:  (context)=> MainScreen()
       ));

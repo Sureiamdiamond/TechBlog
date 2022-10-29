@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:techblog/Colors.dart';
-import 'package:techblog/SplashScreen.dart';
+import 'package:techblog/Components/Colors.dart';
+import 'package:techblog/View/MainScreen.dart';
+import 'package:techblog/View/RegisterIntro.dart';
+
 
 
 
@@ -28,6 +30,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
+    var txttheme = Theme.of(context).textTheme;
+
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
@@ -41,6 +47,30 @@ class MyApp extends StatelessWidget {
       ],
 
       theme: ThemeData(
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            borderSide: BorderSide(width: 1.8),
+          ),
+          filled: true,
+          fillColor: Colors.white
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            textStyle: MaterialStateProperty.resolveWith((states) {
+              if (states.contains(MaterialState.pressed)) {
+                return txttheme.headline1;
+              }
+              return txttheme.subtitle1;
+            }),
+            backgroundColor: MaterialStateProperty.resolveWith((states) {
+              if (states.contains(MaterialState.pressed)) {
+                return SolidColors.seeMore;
+              }
+              return SolidColors.primaryColor;
+            }),
+          ),
+        ),
         fontFamily: 'dana',
         textTheme: const TextTheme(
           headline1: TextStyle(
@@ -74,12 +104,25 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.w700),
 
           headline4: TextStyle(
-              color: Colors.green,
+              color: Colors.black,
               fontFamily: 'dana',
               fontSize: 14,
               fontWeight: FontWeight.w700),
+
+          headline5: TextStyle(
+              color:  SolidColors.primaryColor,
+              fontFamily: 'dana',
+              fontSize: 17,
+              fontWeight: FontWeight.bold),
+
+          headline6: TextStyle(
+              color:  SolidColors.hintText,
+              fontFamily: 'dana',
+              fontSize: 17,
+              fontWeight: FontWeight.bold),
+
         )),
-      home: SplashScreen(),
+      home: MainScreen(),
     );
   }
 }

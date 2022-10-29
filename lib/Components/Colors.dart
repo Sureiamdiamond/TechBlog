@@ -19,14 +19,15 @@ class SolidColors {
   static const Color hashTag = Color.fromARGB(255, 255, 255, 255);
   static const Color seeMore = Color.fromARGB(255, 40, 107, 184);
   static const Color dividerColor = Color.fromARGB(255, 112, 112, 112);
-  static const Color hintText = Color.fromARGB(255, 133, 133, 133);
+  static const Color hintText = Color.fromARGB(170, 133, 133, 133);
   static const Color surface = Color.fromARGB(255, 242, 242, 242);
 
 }
 
 class GradiantColors {
 
-  static const List<Color> buttomNav =[const Color.fromARGB(225, 25, 0, 94) , const Color.fromARGB(225, 68, 4, 87)];
+  static const List<Color> buttomNav =[const Color.fromARGB(250, 25, 0, 94) , const Color.fromARGB(245, 68, 4, 87)];
+  static const List<Color> buttomNavBack =[const Color.fromARGB(2, 255, 255, 255) , const Color.fromARGB(255, 255, 255, 255)];
 
   static const List<Color> HomePosterCoverGradiant =[
     const Color.fromARGB(0, 0, 0, 0) ,

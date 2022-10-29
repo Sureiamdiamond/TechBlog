@@ -9,6 +9,11 @@ Map homePagePosterMap = {
   "view": "251",
 };
 
+
+
+List<HashTagModel> selectedTags = [];
+
+
 //blog fake data
 List<HashTagModel> tagList = [
   HashTagModel(title: "جاوا"), //index 0
@@ -16,6 +21,7 @@ List<HashTagModel> tagList = [
   HashTagModel(title: "دارت"), //index 2
   HashTagModel(title: "وب"), //index 3
   HashTagModel(title: "هوش مصنوعی"), //index 4
+  HashTagModel(title: "برق"), //index 5
 ];
 
 List<BlogModel> blogList = [
