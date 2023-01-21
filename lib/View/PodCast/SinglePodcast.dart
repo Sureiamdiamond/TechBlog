@@ -84,7 +84,7 @@ class SinglePodcast extends StatelessWidget {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 11.0, top: 11 , bottom: 5) ,
+                        padding: const EdgeInsets.only(right: 11.1, top: 11 , bottom: 5) ,
                         child: Align(
                           alignment: Alignment.centerRight,
                           child: Text(podcastModel.title!,
