@@ -41,9 +41,20 @@ class $AssetsImagesGen {
   /// File path: assets/images/Logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/Logo.png');
 
+  /// File path: assets/images/Micbtshhet.png
+  AssetGenImage get micbtshhet =>
+      const AssetGenImage('assets/images/Micbtshhet.png');
+
+  /// File path: assets/images/Pencilbtsheet.png
+  AssetGenImage get pencilbtsheet =>
+      const AssetGenImage('assets/images/Pencilbtsheet.png');
+
   /// File path: assets/images/Profile_avatar.png
   AssetGenImage get profileAvatar =>
       const AssetGenImage('assets/images/Profile_avatar.png');
+
+  /// File path: assets/images/Sadbot.svg
+  String get sadbot => 'assets/images/Sadbot.svg';
 
   /// File path: assets/images/arrow.png
   AssetGenImage get arrow => const AssetGenImage('assets/images/arrow.png');
@@ -54,6 +65,10 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/robot.svg
   String get robot => 'assets/images/robot.svg';
+
+  /// File path: assets/images/single_place_holder.jpg
+  AssetGenImage get singlePlaceHolder =>
+      const AssetGenImage('assets/images/single_place_holder.jpg');
 }
 
 class Assets {

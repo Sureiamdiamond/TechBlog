@@ -17,6 +17,8 @@ class MyStrings{
 
 برای ارسال مطلب و پادکست باید حتما 
 ثبت نام کنی """;
+  static const String ArticleEmpty ="""هنوز هیج مقاله ای به جامعه گیک های فارسی 
+  اضافه نکردی:(""";
 
   static const String shareText ="""
 

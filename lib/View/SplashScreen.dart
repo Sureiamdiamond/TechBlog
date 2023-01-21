@@ -1,8 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:techblog/Components/Colors.dart';
-import 'package:techblog/View/MainScreen.dart';
+import 'package:get/get.dart';
+import 'package:techblog/Const/Colors.dart';
+import 'package:techblog/main.dart';
 import '../gen/assets.gen.dart';
 
 class SplashScreen extends StatefulWidget{
@@ -15,10 +16,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     // 2.1 saniye sabr bokon bad boro saafe dige
-    Future.delayed(Duration(milliseconds: 20)).then((value) {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder:  (context)=> MainScreen()
-      ));
+    Future.delayed(Duration(milliseconds: 1750)).then((value) {
+      Get.offAndToNamed(Namedroute.routeMainScreen);
     });
 
    super.initState();
@@ -26,21 +25,19 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Color.fromARGB(255,255, 255,255),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(Assets.images.logo.path, height: 64,),
-              SizedBox(height: 30,),
-              SpinKitFadingCube(
-                color: SolidColors.primaryColor,
-                size: 35,
-              )
-            ],
-          ),
+    return Scaffold(
+      backgroundColor: Color.fromARGB(255,255, 255,255),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(Assets.images.logo.path, height: 64,),
+            SizedBox(height: 30,),
+            SpinKitFadingCube(
+              color: SolidColors.primaryColor,
+              size: 35,
+            )
+          ],
         ),
       ),
     );

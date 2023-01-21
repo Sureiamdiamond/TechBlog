@@ -21,6 +21,7 @@ class SolidColors {
   static const Color dividerColor = Color.fromARGB(255, 112, 112, 112);
   static const Color hintText = Color.fromARGB(170, 133, 133, 133);
   static const Color surface = Color.fromARGB(255, 242, 242, 242);
+  static const Color Appbattitle = Color.fromARGB(53, 66, 43, 123);
 
 }
 
@@ -34,6 +35,21 @@ class GradiantColors {
     const Color.fromARGB(190, 72, 20, 88) ,
     const Color.fromARGB(225, 280, 20, 81)];
 
+  static const List<Color> SingleScreenAppbar =[
+    const Color.fromARGB(215, 63, 4, 95) ,
+
+    const Color.fromARGB(6, 60, 28, 135),
+
+  ];
+
+  static const List<Color> SingleManageScreenAppbar =[
+    const Color.fromARGB(221, 36, 4, 54) ,
+
+    const Color.fromARGB(6, 60, 28, 135),
+
+  ];
+
+
   static const List<Color> tags = [Color.fromARGB(255, 0, 0, 0),Color.fromARGB(255, 63, 63, 63)];
   static const List<Color> blogPost = [Color.fromARGB(255, 0, 0, 0),Color.fromARGB(0, 0, 0, 0)];
   static const List<Color> podPost = [Color.fromARGB(220, 0, 0, 0),Color.fromARGB(0, 0, 0, 0)];
@@ -43,7 +59,6 @@ class GradiantColors {
     ,Color.fromARGB(195, 72, 20, 88)
     ,Color.fromARGB(255, 280, 20, 81)
   ];
-
 
 
 }
