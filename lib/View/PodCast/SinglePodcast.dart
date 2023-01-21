@@ -116,7 +116,7 @@ class SinglePodcast extends StatelessWidget {
                             itemCount: singlePodCastController.podCastfileList.length,
                             itemBuilder: (context, index) {
                               return Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.1),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
