@@ -1,5 +1,7 @@
 
-  class PodCastFileModel {
+  import 'package:techblog/Const/api_Constant.dart';
+
+class PodCastFileModel {
   String? id;
   String? podcastId;
   String? file;
@@ -12,7 +14,7 @@
 
      id = element ["id"];
      podcastId = element ["podcast_id"];
-     file = element ["file"];
+     file = ApiURLConstant.hostdlUrl + element ["file"];
      title = element ["title"];
     lenght = element ["length"];
 

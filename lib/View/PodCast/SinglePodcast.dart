@@ -16,18 +16,18 @@ import '../../Models/Podcast_Model.dart';
 
 class SinglePodcast extends StatelessWidget {
 
-  late SinglePodCastController singlePodCastController;
+  late SinglePodCastController Controller;
   late PodcastModel podcastModel;
 
   SinglePodcast(){
     podcastModel = Get.arguments;
-    singlePodCastController = Get.put(SinglePodCastController(id:podcastModel.id));
+    Controller = Get.put(SinglePodCastController(id:podcastModel.id));
   }
 
   @override
   Widget build(BuildContext context) {
 
-    print(singlePodCastController.id);
+    print(Controller.id);
     var txttheme = Theme.of(context).textTheme;
 
 
@@ -113,7 +113,7 @@ class SinglePodcast extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: ListView.builder(
                             shrinkWrap: true,
-                            itemCount: singlePodCastController.podCastfileList.length,
+                            itemCount: Controller.podCastfileList.length,
                             itemBuilder: (context, index) {
                               return Padding(
                                 padding: const EdgeInsets.all(8.1),
@@ -127,13 +127,13 @@ class SinglePodcast extends StatelessWidget {
                                         SizedBox(
 
                                             child:Text(
-                                                singlePodCastController.podCastfileList[index].title!
+                                                Controller.podCastfileList[index].title!
                                                 , style: txttheme.headline4),
                                           width: Get.width / 1.7,
                                         )
                                       ],
                                     ),
-                                    Text(singlePodCastController.podCastfileList[index].lenght! + " دقیقه")
+                                    Text(Controller.podCastfileList[index].lenght! + " دقیقه")
                                   ],
                                 ),
                               );
@@ -168,7 +168,28 @@ class SinglePodcast extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Icon(Icons.skip_next , color: Colors.white,),
-                            Icon(Icons.play_circle_fill_rounded , color: Colors.white, size: 55,),
+                            GestureDetector(
+                              onTap: (){
+
+
+                                Controller.player.playing
+                                    ?
+                                Controller.player.pause()
+                                    :
+                                    Controller.player.play();
+
+                                Controller.playState.value = Controller.player.playing;
+                              },
+                                child: Obx(
+                                  ()=> Icon(
+                                    Controller.playState.value
+                                        ?
+                                    Icons.pause_circle_filled_rounded
+                                        :
+                                    Icons.play_circle_filled_rounded ,
+
+                                    color: Colors.white, size: 55,),
+                                )),
                             Icon(Icons.skip_previous , color: Colors.white,),
                             SizedBox(),
                             Icon(Icons.repeat  , color: Colors.white,),
