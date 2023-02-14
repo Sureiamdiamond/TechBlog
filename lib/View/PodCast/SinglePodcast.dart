@@ -1,5 +1,6 @@
 
 
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -115,26 +116,41 @@ class SinglePodcast extends StatelessWidget {
                             shrinkWrap: true,
                             itemCount: Controller.podCastfileList.length,
                             itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(8.1),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        ImageIcon(Image.asset(Assets.icons.micIcon.path).image , color: SolidColors.seeMore,),
-                                        SizedBox(width: 8),
-                                        SizedBox(
+                              return GestureDetector(
+                                onTap: ()async{
+                                  await Controller.player.seek(Duration.zero , index: index);
+                                  Controller.currentPodIndex.value = Controller.player.currentIndex!;
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.1),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          ImageIcon(Image.asset(Assets.icons.micIcon.path).image , color: SolidColors.seeMore,),
+                                          SizedBox(width: 8),
+                                          SizedBox(
 
-                                            child:Text(
-                                                Controller.podCastfileList[index].title!
-                                                , style: txttheme.headline4),
-                                          width: Get.width / 1.7,
-                                        )
-                                      ],
-                                    ),
-                                    Text(Controller.podCastfileList[index].lenght! + " دقیقه")
-                                  ],
+                                          child:Obx(
+                                              ()=>
+                                                Text(
+                                                    Controller.podCastfileList[index].title!
+                                                    , style:
+                                                    Controller.currentPodIndex.value== index
+                                                    ?
+                                                txttheme.headline3
+                                                    :
+                                                txttheme.headline4
+                                                ),
+                                              ),
+                                            width: Get.width / 1.7,
+                                          )
+                                        ],
+                                      ),
+                                      Text(Controller.podCastfileList[index].lenght! + " دقیقه")
+                                    ],
+                                  ),
                                 ),
                               );
                             },
@@ -154,31 +170,71 @@ class SinglePodcast extends StatelessWidget {
                   decoration: myDecoration.mainGradiant,
 
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(11.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        LinearPercentIndicator(
 
-                          percent: 1.0,
-                          backgroundColor: Colors.white,
-                          progressColor: Colors.orange,
+                        Obx(
+                        ()=> ProgressBar(
+                            thumbGlowRadius: 14,
+                            thumbRadius: 9,
+                            buffered: Controller.bufferedBarValue.value,
+                            timeLabelTextStyle: TextStyle(color:Color(0xffd4d3d3) , fontSize: 13),
+                            progressBarColor: Color(0xffcb6105),
+                            thumbColor: Color(0xfff0b339),
+                            baseBarColor: Color(0xffd4d3d3),
+                            progress: Controller.progressBarValue.value,
+                            total: Controller.player.duration??Duration(seconds: 0),
+
+                            onSeek:(position) {
+                              Controller.player.seek(position);
+
+                              Controller.player.playing
+                                  ?
+                              Controller.startProgress()
+                                  :
+                              Controller.timer!.cancel();
+                            },
+                          ),
                         ),
+
                         Row(
+
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Icon(Icons.skip_next , color: Colors.white,),
+
+                            //SEEK TO NEXT ICON
+                            GestureDetector(
+                              onTap: () async {
+                                await Controller.player.seekToNext();
+                                Controller.currentPodIndex.value = Controller.player.currentIndex!;
+                              },
+                                child: Icon(Icons.skip_next , color: Colors.white,)),
+
+                            //PLAY ICON
                             GestureDetector(
                               onTap: (){
+
+                                Controller.player.playing
+                                    ?
+                                Controller.timer!.cancel()
+                                    :
+                                Controller.startProgress();
+
 
 
                                 Controller.player.playing
                                     ?
                                 Controller.player.pause()
                                     :
-                                    Controller.player.play();
+                                Controller.player.play();
+
+
 
                                 Controller.playState.value = Controller.player.playing;
+                                Controller.currentPodIndex.value = Controller.player.currentIndex!;
+
                               },
                                 child: Obx(
                                   ()=> Icon(
@@ -190,9 +246,31 @@ class SinglePodcast extends StatelessWidget {
 
                                     color: Colors.white, size: 55,),
                                 )),
-                            Icon(Icons.skip_previous , color: Colors.white,),
+
+                            //SEEK PERV Icon
+                            GestureDetector(
+                              onTap: ()async{
+                                await Controller.player.seekToPrevious();
+                                Controller.currentPodIndex.value = Controller.player.currentIndex!;
+                              },
+                                child: Icon(Icons.skip_previous , color: Colors.white,)),
+
                             SizedBox(),
-                            Icon(Icons.repeat  , color: Colors.white,),
+                            Obx(
+                              ()=> GestureDetector(
+                                onTap: (){
+                                  Controller.setLoopMode();
+                                },
+                                child: Icon(Icons.repeat,
+                                  color: Controller.isLoopAll.value //age true bood abi kon
+                                         ?
+                                   Color(0xfff0b339)
+                                         :
+                                   Colors.white
+
+                                ),
+                              )
+                            ),
                           ],
                         )
                       ],
