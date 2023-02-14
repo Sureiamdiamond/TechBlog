@@ -1,5 +1,6 @@
 
   import 'dart:async';
+import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
@@ -74,6 +75,7 @@ RxBool isLoopAll = false.obs;
  Rx<Duration> progressBarValue = Duration(seconds: 0).obs;
  Rx<Duration> bufferedBarValue = Duration(seconds: 0).obs;
  Timer? timer;
+
  startProgress (){
    const tick = Duration(seconds: 1);
    int duration = player.duration!.inSeconds - player.position.inSeconds;
@@ -87,6 +89,7 @@ RxBool isLoopAll = false.obs;
 
    timer = Timer.periodic(tick, (timer) {
      duration--;
+     log("duration : $duration ===>> index : ${player.currentIndex}");
      progressBarValue.value = player.position;
      bufferedBarValue.value = player.bufferedPosition;
 
@@ -99,6 +102,11 @@ RxBool isLoopAll = false.obs;
    });
  }
 
+ timerCheck(){
+   if(player.playing){
+     startProgress();
+   }
+ }
 
  setLoopMode(){
 

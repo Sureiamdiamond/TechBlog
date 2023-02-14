@@ -209,6 +209,7 @@ class SinglePodcast extends StatelessWidget {
                               onTap: () async {
                                 await Controller.player.seekToNext();
                                 Controller.currentPodIndex.value = Controller.player.currentIndex!;
+                                Controller.timerCheck();
                               },
                                 child: Icon(Icons.skip_next , color: Colors.white,)),
 
@@ -252,6 +253,7 @@ class SinglePodcast extends StatelessWidget {
                               onTap: ()async{
                                 await Controller.player.seekToPrevious();
                                 Controller.currentPodIndex.value = Controller.player.currentIndex!;
+                                Controller.timerCheck();
                               },
                                 child: Icon(Icons.skip_previous , color: Colors.white,)),
 
