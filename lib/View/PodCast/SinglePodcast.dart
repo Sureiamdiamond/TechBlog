@@ -36,6 +36,7 @@ class SinglePodcast extends StatelessWidget {
       child: Scaffold(
         body : Stack(
           children: [
+
             Positioned(
               top: 0,
                 right: 0,
@@ -107,7 +108,7 @@ class SinglePodcast extends StatelessWidget {
                             ]),
                       ),
 
-                      //FileList
+                      ///FileList
                       Obx(
                           ()=>
                               Padding(
@@ -120,6 +121,7 @@ class SinglePodcast extends StatelessWidget {
                                 onTap: ()async{
                                   await Controller.player.seek(Duration.zero , index: index);
                                   Controller.currentPodIndex.value = Controller.player.currentIndex!;
+                                  Controller.timerCheck();
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.1),
@@ -161,6 +163,8 @@ class SinglePodcast extends StatelessWidget {
                   ),
                 ),
             ),
+
+            //playerManager
             Positioned(
               bottom: 15,
                 right: Dimens.bodymargin,
@@ -187,14 +191,18 @@ class SinglePodcast extends StatelessWidget {
                             progress: Controller.progressBarValue.value,
                             total: Controller.player.duration??Duration(seconds: 0),
 
-                            onSeek:(position) {
+                            onSeek:(position) async {
                               Controller.player.seek(position);
 
-                              Controller.player.playing
-                                  ?
-                              Controller.startProgress()
-                                  :
-                              Controller.timer!.cancel();
+                              if(Controller.player.playing){
+                                Controller.startProgress();
+                                } else if (position<=Duration(seconds: 0)){
+                                  await Controller.player.seekToNext();
+                                  Controller.currentPodIndex.value = Controller.player.currentIndex!;
+                                  Controller.timerCheck();
+
+                              }
+
                             },
                           ),
                         ),

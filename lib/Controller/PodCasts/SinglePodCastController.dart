@@ -1,5 +1,4 @@
-
-  import 'dart:async';
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:get/get.dart';
@@ -8,51 +7,46 @@ import 'package:techblog/Const/api_Constant.dart';
 import 'package:techblog/Models/PodCastFileModel.dart';
 import 'package:techblog/Services/DioService.dart';
 
-class SinglePodCastController extends GetxController{
+class SinglePodCastController extends GetxController {
   var id;
+
   SinglePodCastController({this.id});
+
   RxBool Loading = false.obs;
   RxList<PodCastFileModel> podCastfileList = RxList();
 
-final player = AudioPlayer();
-late ConcatenatingAudioSource playList;
-RxBool playState = false.obs;
-RxInt currentPodIndex = 0.obs;
-RxBool isLoopAll = false.obs;
-
+  final player = AudioPlayer();
+  late ConcatenatingAudioSource playList;
+  RxBool playState = false.obs;
+  RxInt currentPodIndex = 0.obs;
+  RxBool isLoopAll = false.obs;
 
   @override
-  onInit() async{
+  onInit() async {
     super.onInit();
 
     //AudioPlayer
-    playList = ConcatenatingAudioSource(
-      useLazyPreparation: true,
-        children: []
-    );
+    playList = ConcatenatingAudioSource(useLazyPreparation: true, children: []);
 
     await getPodCastFiles();
     //ListFile Haro besaze
 
-    await player.setAudioSource(
-      playList , initialIndex:  0 , initialPosition:  Duration.zero
-    );
-
+    await player.setAudioSource(playList,
+        initialIndex: 0, initialPosition: Duration.zero);
   }
-
 
   getPodCastFiles() async {
     Loading.value = true;
 
-    var response = await DioService().getmeth(ApiURLConstant.podCastFiles+id);
-    if(response.statusCode ==200){
-      for (var element in response.data["files"]){
+    var response = await DioService().getmeth(ApiURLConstant.podCastFiles + id);
+    if (response.statusCode == 200) {
+      for (var element in response.data["files"]) {
         podCastfileList.add(PodCastFileModel.fromJson(element));
-        playList.add(AudioSource.uri(Uri.parse(PodCastFileModel.fromJson(element).file!)));
+        playList.add(AudioSource.uri(
+            Uri.parse(PodCastFileModel.fromJson(element).file!)));
       }
       Loading.value = false;
     }
-
   }
 
   // RxDouble progressValue = 0.0.obs;
@@ -72,58 +66,56 @@ RxBool isLoopAll = false.obs;
   //
   // }
 
- Rx<Duration> progressBarValue = Duration(seconds: 0).obs;
- Rx<Duration> bufferedBarValue = Duration(seconds: 0).obs;
- Timer? timer;
+  Rx<Duration> progressBarValue = Duration(seconds: 0).obs;
+  Rx<Duration> bufferedBarValue = Duration(seconds: 0).obs;
+  Timer? timer;
 
- startProgress (){
-   const tick = Duration(seconds: 1);
-   int duration = player.duration!.inSeconds - player.position.inSeconds;
+  startProgress() {
+    const tick = Duration(seconds: 1);
+    int duration = player.duration!.inSeconds - player.position.inSeconds;
 
-   if(timer!=null){
-     if(timer!.isActive){
-       timer!.cancel();
-       timer = null;
-     }
-   }
+    if (timer != null) {
+      if (timer!.isActive) {
+        timer!.cancel();
+        timer = null;
+      }
+    }
 
-   timer = Timer.periodic(tick, (timer) {
-     duration--;
-     log("duration : $duration ===>> index : ${player.currentIndex}");
-     progressBarValue.value = player.position;
-     bufferedBarValue.value = player.bufferedPosition;
+    timer = Timer.periodic(tick, (timer) {
+      duration--;
+      log("duration : $duration ===>> index : ${player.currentIndex}");
+      progressBarValue.value = player.position;
+      bufferedBarValue.value = player.bufferedPosition;
 
-     if(duration<=0){
-         timer.cancel();
-         progressBarValue.value = Duration(seconds: 0);
-         bufferedBarValue.value = Duration(seconds: 0);
-     }
+      if (duration <= 0) {
+        timer.cancel();
+        progressBarValue.value = Duration(seconds: 0);
+        bufferedBarValue.value = Duration(seconds: 0);
+      }
+    });
+  }
 
-   });
- }
+  timerCheck() {
+    if (player.playing) {
+      startProgress();
+    } else{
+      timer!.cancel();
+      progressBarValue.value = Duration(seconds: 0);
+      bufferedBarValue.value = Duration(seconds: 0);
+    }
+  }
 
- timerCheck(){
-   if(player.playing){
-     startProgress();
-   }
- }
+  setLoopMode() {
+    if (isLoopAll.value) {
+      //age true bood
 
- setLoopMode(){
+      isLoopAll.value = false;
+      player.setLoopMode(LoopMode.off);
+    } else {
+      //age false bood
 
-   if(isLoopAll.value){//age true bood
-
-     isLoopAll.value = false;
-     player.setLoopMode(LoopMode.off);
-
-   } else {//age false bood
-
-     isLoopAll.value = true;
-     player.setLoopMode(LoopMode.all);
-   }
- }
-
+      isLoopAll.value = true;
+      player.setLoopMode(LoopMode.all);
+    }
+  }
 }
-
-
-
-
